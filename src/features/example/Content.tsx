@@ -1,13 +1,11 @@
-import React, { memo } from "react";
+import React from "react";
+import Paragraph from "./Paragraph";
 
 const Content = () => {
-  console.log("re-render");
 
   return (
-    <div>
-      <h2>Hello ae</h2>
-    </div>
+    <Paragraph />
   );
 };
 
-export default memo(Content);
+export default Content;

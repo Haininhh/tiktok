@@ -3,23 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
+import { StoreProvider } from "./store";
 
-const emitComment = (id) => {
-  setInterval(() => {
-    window.dispatchEvent(
-      new CustomEvent(`lesson-${id}`, {
-        detail: `Nội dung comment của lesson ${id}`,
-      })
-    );
-  }, 2000);
-};
-emitComment(1);
-emitComment(2);
-emitComment(3);
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

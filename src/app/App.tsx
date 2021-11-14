@@ -1,42 +1,36 @@
-import { useLayoutEffect, useReducer } from "react";
-// Init state
-const initState = 1;
+import React from 'react';
+import { actions, useStore } from '../store';
+import { InitState } from '../store/assign';
+import "./App.css";
 
-// Actions
-const UP_ACTION = "up";
-const DOWN_ACTION = "down";
-const DEFAULT_ACTION = 0;
 
-// Reducer
-const reducer = (state: number, action: string | number) => {
-  console.log("reducer running...");
 
-  switch (action) {
-    case UP_ACTION:
-      return state + 1;
-    case DOWN_ACTION:
-      return state - 1;
-    case DEFAULT_ACTION:
-      return 0;
-    default:
-      throw new Error("Invalid action");
+
+const App = () => {
+  const [state, dispatch] = useStore()
+  const { todos, todoInput }: InitState = state
+
+  const handleAdd = () => {
+    dispatch(actions.addTodoList(todoInput))
   }
-};
 
-function App() {
-  const [count, dispatch] = useReducer(reducer, initState);
-
-  useLayoutEffect(() => {
-    if (count <= 0) return dispatch(DEFAULT_ACTION);
-  }, [count]);
-
+  console.log(state);
+  
   return (
-    <div style={{ margin: 20 }}>
-      <h1>{count}</h1>
-      <button onClick={() => dispatch(DOWN_ACTION)}>Down</button>
-      <button onClick={() => dispatch(UP_ACTION)}>Up</button>
-    </div>
-  );
+      <div style={{ padding: 20 }}>
+          <input
+            value={todoInput}
+            placeholder="Enter todo..."
+            onChange={e => {dispatch(actions.setTodoInput(e.target.value))}}
+          />
+          <button onClick={handleAdd}>Add</button>
+          <ul>
+            {todos.map((todo, index) => (
+              <li key={index}>{todo}</li>
+            ))}
+          </ul>
+      </div>
+  )
 }
 
-export default App;
+export default App
