@@ -1,4 +1,6 @@
-export const SET_TODO_INPUT = "set_todo";
-export const ADD_TODO = "add_todo";
-export const DELETE_TODO = "delete_todo";
-export const EDIT_TODO = "repair_todo";
+// import { RootState } from "./store"
+
+// export const selectUser: any = (state: RootState) => state.user
+// export const selectRoomList: any = (state: RootState) => state.roomList
+// export const selectUser: any = (state: RootState) => state.member
+export {}
