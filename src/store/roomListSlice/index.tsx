@@ -15,9 +15,13 @@ const roomListSlice = createSlice({
   initialState,
   reducers: {
     setRoomList: (state: RoomList, action: Action) => {
-      return {
-        rooms: [...state.rooms, action.payload],
+      const newState = [...state.rooms, action.payload]
+      if(state.rooms.indexOf(action.payload) === -1) return {
+        rooms: newState,
       };
+      return {
+        rooms: [...state.rooms]
+      }
     },
   },
 });
